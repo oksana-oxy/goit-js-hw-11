@@ -1,12 +1,13 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-export function createImages(data) {
-  const lightbox = new SimpleLightbox('.gallery-list a', {
+const lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
     captionsData: 'alt',
     captionDelay: 250,
   });
+export function createImages(data) {
+  
   const list = document.querySelector('.gallery');
   let images = data.hits
     .map(

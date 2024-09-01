@@ -4,6 +4,7 @@ import "izitoast/dist/css/iziToast.min.css";
 import searchImagesByQuery from './js/pixabay-api';
 import { createImages, clearImages } from './js/render-functions';
 
+
 const form = document.querySelector('.gallery-form');
 const input = document.querySelector('.input-for-gallery');
 const loader = document.querySelector('.loader');
@@ -15,8 +16,7 @@ function handleSubmit(event) {
     clearImages();
   loader.classList.remove('hiden');
   let wordForSearch = input.value.trim();
-  const page = 1;
-  if (wordForSearch === '') {
+    if (wordForSearch === '') {
     iziToast.error({
       position: 'topRight',
       message: 'Please fill the input',
@@ -24,7 +24,7 @@ function handleSubmit(event) {
     loader.classList.add('hiden');
     return;
   }
-  searchImagesByQuery(`${wordForSearch}`, page).then(async data => {
+  searchImagesByQuery(`${wordForSearch}`).then(data => {
     if (data.total === 0) {
       iziToast.error({
         position: 'topRight',
@@ -37,6 +37,8 @@ function handleSubmit(event) {
         loader.classList.add('hiden');
       createImages(data);
     }
+  }).catch(error => {
+    console.log(error);
   });
 }
 
