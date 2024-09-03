@@ -39,6 +39,10 @@ function handleSubmit(event) {
     }
   }).catch(error => {
     console.log(error);
+    iziToast.error({
+      message: 'An error occurred. Please try again later.',
+      position: 'bottomRight',
+    });
   });
 }
 
